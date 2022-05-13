@@ -48,9 +48,9 @@ namespace DeveloperConsole
 			EnableConsole(false);
 		}
 
-		void Update()
+		void FixedUpdate()
 		{
-			if (Input.GetKeyDown(consoleKey))
+			if (Keyboard.current[consoleKey].wasPressedThisFrame)
 				EnableConsole(!active);
 
 			focusFrame++;
@@ -58,7 +58,7 @@ namespace DeveloperConsole
 			if (commandText.isFocused)
 				focusFrame = 0;
 
-			if (Input.GetKeyDown(KeyCode.Return))
+			if (Keyboard.current[Key.Enter].wasPressedThisFrame || Keyboard.current[Key.NumpadEnter].wasPressedThisFrame)
 			{
 				if (focusFrame <= 1)
 				{
@@ -66,7 +66,7 @@ namespace DeveloperConsole
 						OnSubmit(commandText.text);
 				}
 			}
-			else if (Input.GetKeyDown(KeyCode.Tab))
+			else if (Keyboard.current[Key.Tab].wasPressedThisFrame)
 			{
 				if (!string.IsNullOrEmpty(commandText.text))
 				{
@@ -76,14 +76,14 @@ namespace DeveloperConsole
 						SetCommandText(potentialCommands[0].fullname);
 				}
 			}
-			else if (Input.GetKeyDown(KeyCode.UpArrow))
+			else if (Keyboard.current[Key.UpArrow].wasPressedThisFrame)
 			{
 				var command = DeveloperConsole.GetPreviousCommand(true);
 
 				if (!string.IsNullOrEmpty(command))
 					SetCommandText(command);
 			}
-			else if (Input.GetKeyDown(KeyCode.DownArrow))
+			else if (Keyboard.current[Key.DownArrow].wasPressedThisFrame)
 			{
 				var command = DeveloperConsole.GetPreviousCommand(false);
 
