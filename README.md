@@ -7,7 +7,7 @@ Type `spawn-prefab "TestSphere" (0,0,0)` into the console and hit enter/return. 
 This developer console comes prepackaged with some generic commands, type `help` into the console for a full list of available commands
 
 ## Adding Commands
-To add a command to this pool, create a new class that inherits from `ICommandLibrary`. Now simply create a static method and decorate it with the `[Command]` attribute. You then need to give the command a name (ensure this doesn't contain spaces) and a description. More than one command can share the same name, and the console will simply resolve the correct command to use based on the parameters passed to it. Use the command library class to group related commands, since this will eventually be used to enable/disable commands at runtime
+To add a command to this pool, create a new class that inherits from `ICommandLibrary`. Now simply create a method and decorate it with the `[Command]` attribute. You then need to give the command a name (ensure this doesn't contain spaces) and a description. More than one command can share the same name, and the console will simply resolve the correct command to use based on the parameters passed to it. Use the command library class to group related commands, since this will eventually be used to enable/disable commands at runtime
 
 ```cs
 public class MyCommands : ICommandLibrary
