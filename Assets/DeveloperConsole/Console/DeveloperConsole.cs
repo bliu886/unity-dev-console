@@ -447,13 +447,7 @@ namespace DeveloperConsole
 				foreach (var method in methods)
 				{
 					CommandInfo command = new CommandInfo(method);
-
-					if (!method.IsStatic)
-					{
-						LogError($"Unable to load command '{command.fullName}'. Please ensure the [Command] attribute is only placed on static methods");
-						continue;
-					}
-
+					
 					List<CommandInfo> commandList;
 					if (!commands.TryGetValue(command.fullName, out commandList))
 					{
